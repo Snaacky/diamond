@@ -1,2 +1,2 @@
-pymem
+Pymem==1.0
 #pywin32
