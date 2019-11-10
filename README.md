@@ -2,7 +2,7 @@
 External glow ESP for CS:GO.
 
 ## Get Started
-1. Clone the repsitory
+1. Clone the repository
 ```
 git clone https://github.com/Snaacky/Diamond.git
 ```
