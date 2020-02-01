@@ -11,12 +11,8 @@ git clone https://github.com/Snaacky/Diamond.git
 ```
 pip install -r requirements.txt
 ```
-3. Open a terminal with elevated privileges
-```
-WIN + X -> Command Prompt (Admin) or WIN + X -> Windows PowerShell (Admin)
-```
 
-4. Execute the Python script
+3. Execute the script in a terminal with elevated privileges 
 ```
 python diamond.py
 ```
