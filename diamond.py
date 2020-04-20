@@ -6,17 +6,16 @@ dwGlowObjectManager = (0x520DA28)
 m_iGlowIndex = (0xA3F8)
 m_iTeamNum = (0xF4)
 
-pm = pymem.Pymem("csgo.exe")
-client = pymem.process.module_from_name(pm.process_handle, "client_panorama.dll").lpBaseOfDll
-
 
 def main():
     print("Diamond has launched.")
+    pm = pymem.Pymem("csgo.exe")
+    client = pymem.process.module_from_name(pm.process_handle, "client_panorama.dll").lpBaseOfDll
 
     while True:
         glow_manager = pm.read_int(client + dwGlowObjectManager)
 
-        for i in range(1, 32):  # Entities 1-32 are reserved for players. 
+        for i in range(1, 32):  # Entities 1-32 are reserved for players.
             entity = pm.read_int(client + dwEntityList + i * 0x10)
 
             if entity:
