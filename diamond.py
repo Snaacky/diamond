@@ -1,10 +1,10 @@
 import pymem
 import pymem.process
 
-dwEntityList = (0x4CCDBFC)
-dwGlowObjectManager = (0x520DA28)
-m_iGlowIndex = (0xA3F8)
-m_iTeamNum = (0xF4)
+dwEntityList = 81017524
+dwGlowObjectManager = 86554752
+m_iGlowIndex = 42024
+m_iTeamNum = 244
 
 
 def main():
