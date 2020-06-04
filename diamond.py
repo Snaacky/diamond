@@ -1,16 +1,16 @@
 import pymem
 import pymem.process
 
-dwEntityList = (0x4CCDBFC)
-dwGlowObjectManager = (0x520DA28)
-m_iGlowIndex = (0xA3F8)
+dwEntityList = (0x4D4B104)
+dwGlowObjectManager = (0x5292F20)
+m_iGlowIndex = (0xA428)
 m_iTeamNum = (0xF4)
 
 
 def main():
     print("Diamond has launched.")
     pm = pymem.Pymem("csgo.exe")
-    client = pymem.process.module_from_name(pm.process_handle, "client_panorama.dll").lpBaseOfDll
+    client = pymem.process.module_from_name(pm.process_handle, "client.dll").lpBaseOfDll
 
     while True:
         glow_manager = pm.read_int(client + dwGlowObjectManager)
