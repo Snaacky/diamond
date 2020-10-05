@@ -1,2 +1,4 @@
 Pymem==1.0
 #pywin32
+
+requests~=2.20.0

@@ -1,26 +1,31 @@
 import pymem
 import pymem.process
+import requests
 
-dwEntityList = (0x4D4B104)
-dwGlowObjectManager = (0x5292F20)
-m_iGlowIndex = (0xA428)
-m_iTeamNum = (0xF4)
+def retrieve_offsets():
+    r = requests.get("https://raw.githubusercontent.com/frk1/hazedumper/master/csgo.json").json()
+    offsets = {
+        "dwEntityList": r['signatures']['dwEntityList'],
+        "dwGlowObjectManager": r['signatures']['dwGlowObjectManager'],
+        "m_iGlowIndex": r['netvars']['m_iGlowIndex'],
+        "m_iTeamNum": r['netvars']['m_iTeamNum']
+    }
+    return offsets
 
 
-def main():
-    print("Diamond has launched.")
+def main(offsets):
     pm = pymem.Pymem("csgo.exe")
     client = pymem.process.module_from_name(pm.process_handle, "client.dll").lpBaseOfDll
 
     while True:
-        glow_manager = pm.read_int(client + dwGlowObjectManager)
+        glow_manager = pm.read_int(client + offsets['dwGlowObjectManager'])
 
         for i in range(1, 32):  # Entities 1-32 are reserved for players.
-            entity = pm.read_int(client + dwEntityList + i * 0x10)
+            entity = pm.read_int(client + offsets['dwEntityList'] + i * 0x10)
 
             if entity:
-                entity_team_id = pm.read_int(entity + m_iTeamNum)
-                entity_glow = pm.read_int(entity + m_iGlowIndex)
+                entity_team_id = pm.read_int(entity + offsets['m_iTeamNum'])
+                entity_glow = pm.read_int(entity + offsets['m_iGlowIndex'])
 
                 if entity_team_id == 2:  # Terrorist
                     pm.write_float(glow_manager + entity_glow * 0x38 + 0x4, float(1))   # R 
@@ -38,4 +43,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    print("Diamond has launched.")
+    required_offsets = retrieve_offsets()
+    main(required_offsets)
