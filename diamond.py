@@ -15,8 +15,8 @@ try:
 
     print("Diamond has launched.")
 
-    abierto=True
-    while abierto:
+    opened=True
+    while opened:
         glow_manager = pm.read_int(client + offsets['dwGlowObjectManager'])
 
         for i in range(1, 32):  # Entities 1-32 are reserved for players.
