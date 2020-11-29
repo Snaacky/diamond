@@ -1,2 +1,4 @@
-Pymem==1.0
+Pymem
 #pywin32
+
+requests
