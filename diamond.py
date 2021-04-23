@@ -1,10 +1,16 @@
+import json
 import pymem
-import pymem.process
+import http.client
 
-dwEntityList = (0x4D4B104)
-dwGlowObjectManager = (0x5292F20)
-m_iGlowIndex = (0xA428)
-m_iTeamNum = (0xF4)
+conn = http.client.HTTPSConnection("raw.githubusercontent.com")
+conn.request("GET", "/frk1/hazedumper/master/csgo.json")
+values = json.loads(conn.getresponse().read().decode('utf-8'))
+conn.close()
+
+dwEntityList = values['signatures']['dwEntityList']
+dwGlowObjectManager =  values['signatures']['dwGlowObjectManager']
+m_iGlowIndex = values['netvars']['m_iGlowIndex']
+m_iTeamNum = values['netvars']['m_iTeamNum']
 
 
 def main():
