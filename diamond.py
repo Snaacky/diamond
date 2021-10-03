@@ -1,9 +1,9 @@
 import pymem
 import pymem.process
 
-dwEntityList = 0x4DA31EC
-dwGlowObjectManager = 0x52EB678
-m_iGlowIndex = 0xA438
+dwEntityList = 0x4DBC5B4
+dwGlowObjectManager = 0x5304AC0
+m_iGlowIndex = 0x10488
 m_iTeamNum = 0xF4
 
 
