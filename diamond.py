@@ -1,10 +1,15 @@
 import pymem
 import pymem.process
+import json
+import requests
 
-dwEntityList = 0x4DA31EC
-dwGlowObjectManager = 0x52EB678
-m_iGlowIndex = 0xA438
-m_iTeamNum = 0xF4
+response = requests.get('https://raw.githubusercontent.com/frk1/hazedumper/master/csgo.json')
+offsets = response.json()
+
+dwEntityList = offsets['signatures']['dwEntityList']
+dwGlowObjectManager = offsets['signatures']['dwGlowObjectManager']
+m_iGlowIndex = offsets['netvars']['m_iGlowIndex']
+m_iTeamNum = offsets['netvars']['m_iTeamNum']
 
 
 def main():
